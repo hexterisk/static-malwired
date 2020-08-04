@@ -12,11 +12,11 @@ Classes = [
     "backdoor",
     "worm",
     "trojan",
-    "rootkit",
-    "virus",
-    "bot",
-    "ransomware",
-    "adware",
-    "downloader",
+    # "rootkit",
+    # "virus",
+    # "bot",
+    # "ransomware",
+    # "adware",
+    # "downloader",
     # "benign" # commented because this list is used to download malwares from online data stores.
 ]

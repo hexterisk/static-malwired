@@ -1,3 +1,4 @@
+import os
 import lief
 import flask
 
@@ -12,13 +13,18 @@ def index():
 @app.route("/uploader", methods = ["POST"])
 def upload_file():
     peFile = flask.request.files["pe"]
+    model = flask.request.files["model"]
+    with open("model_temp.mdl", "wb") as f:
+        f.write(model.read())
+
     try:
         _ = lief.PE.parse(list(peFile.read()))
     except:
         return flask.render_template("invalid.html")
     
-    mal_class = predict.Prediction(peFile.read())
-    return flask.render_template("prediction.html", mal_class = mal_class)
+    typeClass = predict.Prediction(peFile.read(), "model_temp.mdl")
+    os.remove("model_temp.mdl")
+    return flask.render_template("prediction.html", typeClass = typeClass)
 
 if __name__ == "__main__":
     app.run(debug=True)
