@@ -1,14 +1,14 @@
 # Static Malwired
 Classifies if a PE is benign or a malware, based on static analysis.
-The given PE can be classified among the classes defined in the config file. The user must modify the classes based on the dataset and the requirement. Simply edit the classes in [config.py](https://github.com/hexterisk/static-malwired/blob/master/config.py) and the model in [train.py](https://github.com/hexterisk/static-malwired/blob/master/train.py) as per requirement. The POC in the notebook has been run on a much smaller dataset.
+The given PE can be classified among the classes defined in the config file. The user must modify the classes based on the dataset and the requirement. Simply edit the classes in [config.py](https://github.com/hexterisk/static-malwired/blob/master/config.py) and the model in [train.py](https://github.com/hexterisk/static-malwired/blob/master/train.py) as per requirement. The POC in the [IPython notebook](https://github.com/hexterisk/static-malwired/blob/master/Model%20POC.ipynb) has been run on a much smaller dataset. The model gives a 93% accuracy on a dataset of decent size.
 
-Also checkout the [repository](https://github.com/hexterisk/dynamic-malwired/) hosting the POC for classifier working on dynamic analysis.
+Also checkout the [repository](https://github.com/hexterisk/dynamic-malwired/) hosting the POC for a classifier working on dynamic analysis.
 
 DISCLAIMER: The whole suite has been created, although the user would have to acquire the dataset and train the model by themselves.
 
 ## Algorithm
 
-A [blog-post](https://hexterisk.github.io/blog/posts/2020/07/20/classification-of-malware-through-static-analysis/) on the features used in this POC.
+A [blog-post](https://hexterisk.github.io/blog/posts/2020/07/20/classification-of-malwares-through-static-analysis/) on the features used in this POC.
 Apart from the usual (and unreliable) static information from headers in the PE file format, the major part is the use of raw bytes with the following algorithm.
 
 * Create shingles out of the binary data from executables.
@@ -31,7 +31,7 @@ DISCLAIMER: The dataset built from MalShare is in no way adequate. Kindly find o
 1. Run [downloader.py](https://github.com/hexterisk/static-malwired/blob/master/downloader.py) to download the malware database. Add more classes for processing data from more websites, or simply skip this step if you already have a database and don't need to download anything.
 Make sure the directory structure for the dataset folder is as follows:
 ```bash
-malwired/
+static-malwired/
 ├── dataset/
 │   ├── classA
 │   │   ├── exeA
@@ -73,7 +73,6 @@ malwired/
 [builder.py](https://github.com/hexterisk/static-malwired/blob/master/builder.py): Builds the dataset from all the files in the database.
 
 [config.py](https://github.com/hexterisk/static-malwired/blob/master/config.py): Contains malware classes list that can be deleted as per requirement.
-
 
 [downloader.py](https://github.com/hexterisk/static-malwired/blob/master/downloader.py): Script that scrapes pages of MalShare and downloads PEs from their database using their API.
 
